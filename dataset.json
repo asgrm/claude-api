@@ -1,0 +1,39 @@
+[
+  {
+    "prompt_inputs": {
+      "content": "Recent advances in biomimetic materials have demonstrated remarkable applications at the intersection of biology, chemistry, and environmental science. Researchers have engineered bio-inspired polymers that mimic the hierarchical structure of abalone shells, achieving tensile strength comparable to steel while maintaining 50% lighter weight through novel cross-linking mechanisms. These sustainable materials are synthesized using aqueous-phase reactions that eliminate toxic organic solvents, reducing chemical waste by 87%. Furthermore, the degradation pathways of these polymers have been optimized to match natural decomposition rates in marine ecosystems, addressing persistent plastic pollution while maintaining structural integrity for 5-7 years in terrestrial applications. The interdisciplinary approach combines protein engineering principles with green chemistry catalysts and ecological impact assessment methodologies."
+    },
+    "solution_criteria": [
+      "Extracts all major topics spanning biology, chemistry, and environmental science domains",
+      "Returns output as a JSON array of strings",
+      "Avoids including redundant or overly granular subtopics"
+    ],
+    "task_description": "Extract topics out of a passage of text from a scholarly article into a JSON array of strings",
+    "scenario": "Testing with a interdisciplinary passage containing mixed topics (biology, chemistry, and environmental science) to verify accurate topic extraction across multiple domains"
+  },
+  {
+    "prompt_inputs": {
+      "content": "The proliferation of digital communication platforms has fundamentally altered interpersonal dynamics, particularly among adolescents navigating identity formation during critical developmental periods. While proponents emphasize enhanced connectivity and access to diverse peer networks, empirical evidence increasingly documents paradoxical outcomes: users report simultaneous feelings of social integration and profound isolation, suggesting that quantitative measures of interaction frequency fail to capture qualitative dimensions of belonging. The algorithmic curation of content, ostensibly designed to optimize engagement, creates filter bubbles that paradoxically constrain exposure to heterogeneous perspectives, potentially undermining the cognitive flexibility essential for navigating complex social environments. Furthermore, the performative nature of curated self-presentation on these platforms introduces novel pressures around authenticity and social comparison, mechanisms previously understood within offline contexts but now amplified through persistent digital archives and quantified social validation metrics."
+    },
+    "solution_criteria": [
+      "Identifies both explicit topics (digital communication, adolescent development, algorithms) and implicit themes (authenticity, social comparison, identity formation) requiring inference",
+      "Recognizes underlying conceptual tensions (connectivity paradox, filter bubbles, performative self-presentation) as distinct topics beyond surface-level keywords",
+      "Avoids extracting only obvious terms; demonstrates understanding of nuanced scholarly arguments about psychological and social mechanisms"
+    ],
+    "task_description": "Extract topics out of a passage of text from a scholarly article into a JSON array of strings",
+    "scenario": "Testing with a passage containing implicit and subtle topics that require inference beyond surface-level keyword extraction to ensure conceptual understanding"
+  },
+  {
+    "prompt_inputs": {
+      "content": "Recent advances in Minimalist Syntax have challenged the Principles and Parameters framework through investigations of phase-based derivations and their implications for locality constraints. Specifically, Chomsky's Phase Impenetrability Condition (PIC) has been subjected to rigorous empirical scrutiny via phenomena such as long-distance A-bar extraction, successive-cyclic movement, and the distribution of parasitic gaps in English and Romance languages. Furthermore, the interaction between Spell-Out operations and feature-checking mechanisms at the C and v* phases reveals critical constraints on wh-movement and relativization patterns, particularly regarding the role of the EPP (Extended Projection Principle) in triggering obligatory movement to specifier positions. These findings necessitate refinement of the Copy Theory of Movement and reconsideration of how PF (Phonological Form) interfaces with narrow syntax during ellipsis resolution and sluicing constructions."
+    },
+    "solution_criteria": [
+      "Extracts all major linguistic concepts and frameworks mentioned (e.g., Minimalism, phases, PIC, EPP, Copy Theory of Movement)",
+      "Includes specialized terminology and acronyms (PIC, v*, C, EPP, PF, A-bar, A-movement)",
+      "Captures specific phenomena discussed (extraction, movement, parasitic gaps, ellipsis, sluicing)",
+      "Returns output as a valid JSON array of strings with no duplicate entries"
+    ],
+    "task_description": "Extract topics out of a passage of text from a scholarly article into a JSON array of strings",
+    "scenario": "Testing with a dense, jargon-heavy academic passage from a niche field (e.g., quantum physics or linguistics) to verify handling of specialized terminology and acronyms"
+  }
+]

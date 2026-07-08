@@ -1,0 +1,236 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Prompt Evaluation Report</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 20px;
+                color: #333;
+            }
+            .header {
+                background-color: #f0f0f0;
+                padding: 20px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            .summary-stats {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .stat-box {
+                background-color: #fff;
+                border-radius: 5px;
+                padding: 15px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                flex-basis: 30%;
+                min-width: 200px;
+            }
+            .stat-value {
+                font-size: 24px;
+                font-weight: bold;
+                margin-top: 5px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th {
+                background-color: #4a4a4a;
+                color: white;
+                text-align: left;
+                padding: 12px;
+            }
+            td {
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+                vertical-align: top;
+            }
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .output-cell {
+                white-space: pre-wrap;
+            }
+            .score {
+                font-weight: bold;
+                padding: 5px 10px;
+                border-radius: 3px;
+                display: inline-block;
+            }
+            .score-high {
+                background-color: #c8e6c9;
+                color: #2e7d32;
+            }
+            .score-medium {
+                background-color: #fff9c4;
+                color: #f57f17;
+            }
+            .score-low {
+                background-color: #ffcdd2;
+                color: #c62828;
+            }
+            .output {
+                overflow: auto;
+                white-space: pre-wrap;
+            }
+
+            .output pre {
+                background-color: #f5f5f5;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                padding: 10px;
+                margin: 0;
+                font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                font-size: 14px;
+                line-height: 1.4;
+                color: #333;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                overflow-x: auto;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+
+            td {
+                width: 20%;
+            }
+            .score-col {
+                width: 80px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Prompt Evaluation Report</h1>
+            <div class="summary-stats">
+                <div class="stat-box">
+                    <div>Total Test Cases</div>
+                    <div class="stat-value">3</div>
+                </div>
+                <div class="stat-box">
+                    <div>Average Score</div>
+                    <div class="stat-value">8.0 / 10</div>
+                </div>
+                <div class="stat-box">
+                    <div>Pass Rate (≥7)</div>
+                    <div class="stat-value">100.0%</div>
+                </div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Scenario</th>
+                    <th>Prompt Inputs</th>
+                    <th>Solution Criteria</th>
+                    <th>Output</th>
+                    <th>Score</th>
+                    <th>Reasoning</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+            <tr>
+                <td>Testing with a interdisciplinary passage containing mixed topics (biology, chemistry, and environmental science) to verify accurate topic extraction across multiple domains</td>
+                <td class="prompt-inputs"><strong>content:</strong> Recent advances in biomimetic materials have demonstrated remarkable applications at the intersection of biology, chemistry, and environmental science. Researchers have engineered bio-inspired polymers that mimic the hierarchical structure of abalone shells, achieving tensile strength comparable to steel while maintaining 50% lighter weight through novel cross-linking mechanisms. These sustainable materials are synthesized using aqueous-phase reactions that eliminate toxic organic solvents, reducing chemical waste by 87%. Furthermore, the degradation pathways of these polymers have been optimized to match natural decomposition rates in marine ecosystems, addressing persistent plastic pollution while maintaining structural integrity for 5-7 years in terrestrial applications. The interdisciplinary approach combines protein engineering principles with green chemistry catalysts and ecological impact assessment methodologies.</td>
+                <td class="criteria">• Extracts all major topics spanning biology, chemistry, and environmental science domains<br>• Returns output as a JSON array of strings<br>• Avoids including redundant or overly granular subtopics</td>
+                <td class="output"><pre>```json
+[
+  "biomimetic materials",
+  "bio-inspired polymers",
+  "abalone shells",
+  "hierarchical structure",
+  "tensile strength",
+  "cross-linking mechanisms",
+  "sustainable materials",
+  "aqueous-phase reactions",
+  "green chemistry",
+  "chemical waste reduction",
+  "polymer degradation",
+  "marine ecosystems",
+  "plastic pollution",
+  "protein engineering",
+  "ecological impact assessment",
+  "environmental science"
+]
+```</pre></td>
+                <td class="score-col"><span class="score score-medium">7</span></td>
+                <td class="reasoning">The solution meets all mandatory requirements: it returns a valid JSON array of strings containing topics from the passage with no extra commentary. It successfully extracts topics spanning biology, chemistry, and environmental science domains. However, it has minor deficiencies in the secondary criteria regarding granularity—some items like 'abalone shells' and 'hierarchical structure' are overly specific subtopics rather than major topics, and 'aqueous-phase reactions' is missing despite being explicitly mentioned. The solution is strong overall but could be more refined in topic selection and consolidation.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with a dense, jargon-heavy academic passage from a niche field (e.g., quantum physics or linguistics) to verify handling of specialized terminology and acronyms</td>
+                <td class="prompt-inputs"><strong>content:</strong> Recent advances in Minimalist Syntax have challenged the Principles and Parameters framework through investigations of phase-based derivations and their implications for locality constraints. Specifically, Chomsky's Phase Impenetrability Condition (PIC) has been subjected to rigorous empirical scrutiny via phenomena such as long-distance A-bar extraction, successive-cyclic movement, and the distribution of parasitic gaps in English and Romance languages. Furthermore, the interaction between Spell-Out operations and feature-checking mechanisms at the C and v* phases reveals critical constraints on wh-movement and relativization patterns, particularly regarding the role of the EPP (Extended Projection Principle) in triggering obligatory movement to specifier positions. These findings necessitate refinement of the Copy Theory of Movement and reconsideration of how PF (Phonological Form) interfaces with narrow syntax during ellipsis resolution and sluicing constructions.</td>
+                <td class="criteria">• Extracts all major linguistic concepts and frameworks mentioned (e.g., Minimalism, phases, PIC, EPP, Copy Theory of Movement)<br>• Includes specialized terminology and acronyms (PIC, v*, C, EPP, PF, A-bar, A-movement)<br>• Captures specific phenomena discussed (extraction, movement, parasitic gaps, ellipsis, sluicing)<br>• Returns output as a valid JSON array of strings with no duplicate entries</td>
+                <td class="output"><pre>```json
+[
+  "Minimalist Syntax",
+  "Principles and Parameters framework",
+  "Phase-based derivations",
+  "Locality constraints",
+  "Phase Impenetrability Condition (PIC)",
+  "Long-distance A-bar extraction",
+  "Successive-cyclic movement",
+  "Parasitic gaps",
+  "Spell-Out operations",
+  "Feature-checking mechanisms",
+  "C phase",
+  "v* phase",
+  "Wh-movement",
+  "Relativization",
+  "Extended Projection Principle (EPP)",
+  "Specifier positions",
+  "Copy Theory of Movement",
+  "Phonological Form (PF)",
+  "Narrow syntax",
+  "Ellipsis resolution",
+  "Sluicing constructions"
+]
+```</pre></td>
+                <td class="score-col"><span class="score score-high">9</span></td>
+                <td class="reasoning">The solution fully satisfies all mandatory requirements: it is a valid JSON array of strings containing topics from the passage with no extra commentary. It meets the secondary criteria comprehensively by extracting all major frameworks (Minimalist Syntax, Principles and Parameters, Phase-based derivations, Copy Theory of Movement), specialized terminology (PIC, EPP, PF, v*, A-bar, narrow syntax), and specific phenomena (long-distance extraction, successive-cyclic movement, parasitic gaps, ellipsis, sluicing). The array contains 21 unique entries with no duplicates. Minor weaknesses include the omission of 'Chomsky' as a notable topic and slightly granular treatment of phases, but these do not violate mandatory requirements and represent only marginal gaps in secondary criteria coverage.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with a passage containing implicit and subtle topics that require inference beyond surface-level keyword extraction to ensure conceptual understanding</td>
+                <td class="prompt-inputs"><strong>content:</strong> The proliferation of digital communication platforms has fundamentally altered interpersonal dynamics, particularly among adolescents navigating identity formation during critical developmental periods. While proponents emphasize enhanced connectivity and access to diverse peer networks, empirical evidence increasingly documents paradoxical outcomes: users report simultaneous feelings of social integration and profound isolation, suggesting that quantitative measures of interaction frequency fail to capture qualitative dimensions of belonging. The algorithmic curation of content, ostensibly designed to optimize engagement, creates filter bubbles that paradoxically constrain exposure to heterogeneous perspectives, potentially undermining the cognitive flexibility essential for navigating complex social environments. Furthermore, the performative nature of curated self-presentation on these platforms introduces novel pressures around authenticity and social comparison, mechanisms previously understood within offline contexts but now amplified through persistent digital archives and quantified social validation metrics.</td>
+                <td class="criteria">• Identifies both explicit topics (digital communication, adolescent development, algorithms) and implicit themes (authenticity, social comparison, identity formation) requiring inference<br>• Recognizes underlying conceptual tensions (connectivity paradox, filter bubbles, performative self-presentation) as distinct topics beyond surface-level keywords<br>• Avoids extracting only obvious terms; demonstrates understanding of nuanced scholarly arguments about psychological and social mechanisms</td>
+                <td class="output"><pre>```json
+[
+  "Digital communication platforms",
+  "Interpersonal dynamics",
+  "Adolescent development",
+  "Identity formation",
+  "Social connectivity",
+  "Peer networks",
+  "Social isolation",
+  "Social integration",
+  "Algorithmic curation",
+  "Content engagement",
+  "Filter bubbles",
+  "Cognitive flexibility",
+  "Self-presentation",
+  "Authenticity",
+  "Social comparison",
+  "Digital archives",
+  "Social validation metrics"
+]
+```</pre></td>
+                <td class="score-col"><span class="score score-high">8</span></td>
+                <td class="reasoning">The solution successfully meets all mandatory requirements with properly formatted JSON containing only topic strings. It demonstrates strong secondary criteria performance by identifying both surface-level and nuanced scholarly concepts, including the connectivity paradox and filter bubbles as distinct topics. However, it has minor gaps in capturing the full semantic richness of the passage: 'performative self-presentation' loses the critical adjective that defines the scholarly argument, and some implicit topics like developmental context could be more explicitly represented. These are refinement issues rather than fundamental failures—the solution shows solid understanding of the text's conceptual architecture.</td>
+            </tr>
+        
+            </tbody>
+        </table>
+    </body>
+    </html>
+    
